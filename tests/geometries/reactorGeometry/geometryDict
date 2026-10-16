@@ -1,0 +1,11 @@
+completeModel.stl
+{
+    type            triSurfaceMesh;
+    regions
+    {
+        externalWalls { name externalWalls; }
+        fins { name fins; }
+        top { name top; }
+        impeler { name impeler; }
+    }
+}

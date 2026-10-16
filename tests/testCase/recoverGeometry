@@ -1,0 +1,17 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+. ${WM_PROJECT_DIR:?}/bin/tools/CleanFunctions      # Tutorial clean functions
+#------------------------------------------------------------------------------
+geometry='cylinder' 
+# geometry='reactorGeometry'
+geometryPath="../geometries/$geometry"
+
+rm -fr constant/triSurface
+rm -fr constant/geometry_
+rm -fr system/refinementSurfacesDict
+rm -fr system/geometryDict
+cp -fr $geometryPath/triSurface ./constant/triSurface
+cp -fr $geometryPath/geometry_ ./constant/geometry_
+cp -fr $geometryPath/refinementSurfacesDict system/refinementSurfacesDict
+cp -fr $geometryPath/geometryDict system/geometryDict

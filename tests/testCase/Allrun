@@ -1,0 +1,48 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+. ${WM_PROJECT_DIR:?}/bin/tools/CleanFunctions      # Tutorial clean functions
+#------------------------------------------------------------------------------
+
+mkdir -p constant
+mkdir -p constant/triSurface
+
+rm -f ./0/*
+rm -f log.*
+rm -fr processor*
+
+
+runApplication surfaceFeatureExtract
+runApplication surfaceConvert ./constant/triSurface/completeModel.stl ./constant/geometry/targetSurfaces.obj
+runApplication surfaceFeatureConvert ./constant/triSurface/completeModel.eMesh ./constant/geometry/initEdges.obj
+runApplication ideasUnvToFoam ./constant/triSurface/grid.unv
+
+# runApplication  snappyHexMesh -overwrite
+# runApplication  checkMesh -allTopology -allGeometry -writeSets vtk
+# exit
+runApplication decomposePar
+runParallel  snappyHexMesh -overwrite
+runParallel  checkMesh -allTopology -allGeometry -writeSets vtk
+
+exit
+#without buffer layer
+# minEdgeLength          1.51866e-05
+# maxStepLength          4.55598e-06
+0.0000045
+#with buffer layer
+# Mesh minimum edge length = 3.77094e-06
+# Mesh maximum edge length = 0.006197
+
+#- Run with leak-detection (writes postProcessing/leakPath) but no closure
+foamDictionary system/snappyHexMeshDict \
+    -entry castellatedMeshControls/useLeakClosure -set false
+runParallel -s leak checkMesh
+cleanTimeDirectories
+
+#- Run with leak-detection (writes postProcessing/leakPath) and closure
+foamDictionary system/snappyHexMeshDict \
+    -entry castellatedMeshControls/useLeakClosure -set true
+runParallel -s leak_and_closure snappyHexMesh
+runParallel -s leak_and_closure checkMesh
+
+#------------------------------------------------------------------------------

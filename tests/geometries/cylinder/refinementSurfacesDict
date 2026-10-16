@@ -1,0 +1,19 @@
+completeModel.stl
+{
+    level           ( 0 0 );
+    regions
+    {
+        impleler
+        {
+            level           ( 2 2 );
+        }
+        externalWalls
+        {
+            level           ( 2 2 );
+        }
+        top
+        {
+            level           ( 2 2 );
+        }
+    }
+}

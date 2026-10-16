@@ -1,0 +1,28 @@
+completeModel.stl
+{
+    level           ( 0 0 );
+    regions
+    {
+        impleler
+        {
+            level           ( 2 2 );
+        }
+        externalWalls
+        {
+            level           ( 2 2 );
+        }
+        fins
+        {
+            level           ( 3 3 );
+        }
+        top
+        {
+            level           ( 2 2 );
+        }
+    }
+}
+baffle.stl
+{
+    level           ( 0 0 );
+    faceType baffle;
+}

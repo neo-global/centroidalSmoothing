@@ -1,0 +1,12 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+. ${WM_PROJECT_DIR:?}/bin/tools/CleanFunctions      # Tutorial clean functions
+#------------------------------------------------------------------------------
+rm -fr log.*
+rm -fr processor*
+rm -fr postProcessing/
+rm -fr constant/extendedFeatureEdgeMesh/
+foamListTimes -rm
+rm -fr constant/polyMesh/*
+
