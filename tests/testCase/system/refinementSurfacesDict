@@ -5,15 +5,15 @@ completeModel.stl
     {
         impleler
         {
-            level           ( 2 2 );
+            level           ( 0 0 );
         }
         externalWalls
         {
-            level           ( 2 2 );
+            level           ( 0 0 );
         }
         top
         {
-            level           ( 2 2 );
+            level           ( 0 0 );
         }
     }
 }
