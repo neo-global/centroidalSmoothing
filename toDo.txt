@@ -1,7 +1,9 @@
+Done:
 1. find the `targetSurfaces.obj` and `initEdges.obj` in `constant/geometry` & `constant/triSurface`.
 2. make the solver dictionary have the name of the two files as inputs and if leaved empty it does not look up for them, currently to 
 turn it off one needs to change location of the files.
-3. make the snapping on to the `targetSurfaces.obj` independant of the snappying to `initEdges.obj` currently the two are used or non are used.
+TODO:
+3. make the snapping on to the `targetSurfaces.obj` independent of the snapping to `initEdges.obj` currently the two are used or none are used.
 4. implement so the solve smoothing can be used in the snappying stage without requiring buffer layer == True (current behavior).
 5. the created `initEdges.obj` is actually the `targetEdges.obj` really, as it is the final edges positions, would be awsome (but complex) to
 be able to auto detect the edges that corresponds to `initEdges.obj` so one could use the existing file as `targetEdges.obj` directly, in case of 
