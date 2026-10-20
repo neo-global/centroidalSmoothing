@@ -37,9 +37,9 @@ newSmoothSolverMotionSolver::newSmoothSolverMotionSolver
     displacementMotionSolver(mesh, dict, typeName),
 
     intValue_(0),
-    initEdgesFileName_("constant/geometry/initEdges.obj"),
-    targetEdgesFileName_("constant/geometry/targetEdges.obj"),
-    targetSurfacesFileName_("constant/geometry/targetSurfaces.obj"),
+    initEdgesFileName_("none"), 	//("constant/geometry/initEdges.obj"),
+    targetEdgesFileName_("none"),	//("constant/geometry/targetEdges.obj"),
+    targetSurfacesFileName_("none"),	//("constant/geometry/targetSurfaces.obj"),
     userScalar_(0),
     userWord_("none"),
     stringList_(),
@@ -92,9 +92,9 @@ newSmoothSolverMotionSolver::newSmoothSolverMotionSolver
     ),
 
     intValue_(0),
-    initEdgesFileName_("constant/geometry/initEdges.obj"),
-    targetEdgesFileName_("constant/geometry/targetEdges.obj"),
-    targetSurfacesFileName_("constant/geometry/targetSurfaces.obj"),
+    initEdgesFileName_("none"), 	//("constant/geometry/initEdges.obj"),
+    targetEdgesFileName_("none"),	//("constant/geometry/targetEdges.obj"),
+    targetSurfacesFileName_("none"),	//("constant/geometry/targetSurfaces.obj"),
     userScalar_(0),
     userWord_("none"),
     stringList_(),
@@ -180,21 +180,21 @@ void newSmoothSolverMotionSolver::readCoeffs
         dict.lookupOrDefault<fileName>
         (
             "initEdgesFile",
-            "constant/geometry/initEdges.obj"
+            "none" //"constant/geometry/initEdges.obj"
         );
 
     targetEdgesFileName_ =
         dict.lookupOrDefault<fileName>
         (
             "targetEdgesFile",
-            "constant/geometry/targetEdges.obj"
+            "none" //"constant/geometry/targetEdges.obj"
         );
 
     targetSurfacesFileName_ =
         dict.lookupOrDefault<fileName>
         (
             "targetSurfacesFile",
-            "constant/geometry/targetSurfaces.obj"
+            "none" //"constant/geometry/targetSurfaces.obj"
         );
 
     userScalar_ =
