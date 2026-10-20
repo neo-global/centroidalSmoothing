@@ -454,12 +454,25 @@ void newSmoothSolverMotionSolver::solve()
 
     // Check prerequisites for carrying out boundary point smoothing
     doBoundarySmoothing = false;
+    bool noEdgeMesh	= false;
+    //-RM: searches for both initEdges and targetSurfaces
     if ((fileExists(targetSurfacesFileString)) and
         ((fileExists(initEdgesFileString)) or (labelIOListsHaveData)) and
         (smoothingPatchIds.size() > 0))
     {
         doBoundarySmoothing = true;
         Info << "Enabled boundary point smoothing" << endl << endl;
+    }
+    else if ((fileExists(targetSurfacesFileString)) and
+        !((fileExists(initEdgesFileString)) or (labelIOListsHaveData)) and
+        (smoothingPatchIds.size() > 0))
+    {
+	
+    	//-RM: placeholder of workaround to skip initEdges.
+	//works if initEdges file is missing. 
+        doBoundarySmoothing = true;
+	noEdgeMesh	    = true;
+        Info << "Enabled boundary point smoothing without edge mesh." << endl << endl;
     }
     else
     {
@@ -515,6 +528,15 @@ void newSmoothSolverMotionSolver::solve()
         searchSurfaces.reset(new triSurfaceSearch(surf));
         tree.reset(new indexedOctree<treeDataTriSurface>(searchSurfaces().tree()));
 
+      if(noEdgeMesh)
+      {
+            // Initialize empty edge mesh, to avoid issues in
+            // classifyBoundaryPoints()
+            initEdges.reset(new edgeMesh());
+            targetEdges.reset(new edgeMesh());
+      }
+      else
+      {
         // Initial and target feature edge meshes
         initEdges.reset(new edgeMesh(initEdgesFileName));
         Info << "Initial feature edges file " << initEdgesFileName << " stats:" << endl;
@@ -534,8 +556,7 @@ void newSmoothSolverMotionSolver::solve()
 
             << "did not find file " << targetEdgesFileString << "." << endl << endl;
         }
-
-        // Check sanity of edge meshes
+	// Check sanity of edge meshes
         Info << "Checking initial edge mesh sanity" << endl;
         checkEdgeMeshSanity(initEdges, meshMinEdgeLength, meshPerimeter);
         Info << "Checking target edge mesh sanity" << endl;
@@ -545,6 +566,7 @@ void newSmoothSolverMotionSolver::solve()
         Info << endl << "Starting to build targetEdgeStrings" << endl;
         const label nStrings = findEdgeMeshStrings(targetEdgeStrings, targetEdges);
         Info << "Detected number of target edge mesh strings: " << nStrings + 1 << endl << endl;
+      }
     }
     else
     {

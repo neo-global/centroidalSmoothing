@@ -82,7 +82,9 @@ snapControls
     // motionSolverLibs ("libsmoothMeshMotionSolver.so");
     newSmoothSolverCoeffs
     {
-        centroidalIters 3000;
+        centroidalIters 	3000;
+	initEdgesFile		"none"; //"constant/triSurface/initEdges.obj";
+	targetSurfacesFile	"constant/geometry/targetSurfaces.obj";
     }
 
 
