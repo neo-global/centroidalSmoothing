@@ -180,21 +180,21 @@ void newSmoothSolverMotionSolver::readCoeffs
         dict.lookupOrDefault<fileName>
         (
             "initEdgesFile",
-            "constant/geometry/initEdges.obj"
+            "constant/geometry/initEdges.obj" 		//-RM: initEdges.obj
         );
 
     targetEdgesFileName_ =
         dict.lookupOrDefault<fileName>
         (
             "targetEdgesFile",
-            "constant/geometry/targetEdges.obj"
+            "constant/geometry/targetEdges.obj" 	//-RM: targetEdges.obj
         );
 
     targetSurfacesFileName_ =
         dict.lookupOrDefault<fileName>
         (
             "targetSurfacesFile",
-            "constant/geometry/targetSurfaces.obj"
+            "constant/geometry/targetSurfaces.obj" 	//-RM: targetSurfaces.obj
         );
 
     userScalar_ =
@@ -340,12 +340,21 @@ void newSmoothSolverMotionSolver::solve()
 
     const labelList layerPatchIds = getPatchIdsForOption(mesh, coeffDict(), "layerPatches", false);
     const labelList smoothingPatchIds = getPatchIdsForOption(mesh, coeffDict(), "smoothingPatches", true);
+
     const fileName initEdgesFileName(initEdgesFileName_);
     const fileName targetEdgesFileName(targetEdgesFileName_);
     const fileName targetSurfacesFileName(targetSurfacesFileName_);
-    const string initEdgesFileString(initEdgesFileName_.c_str());
+
+    const string initEdgesFileString(initEdgesFileName_.c_str());	//can be made non-const to recreate full-path
     const string targetEdgesFileString(targetEdgesFileName_.c_str());
     const string targetSurfacesFileString(targetSurfacesFileName_.c_str());
+/*
+    if(fileExists("constant/triSurface/"+targetSurfacesFileString))
+    {
+        targetSurfacesFileString = "constant/triSurface/"+targetSurfacesFileString;
+
+    }
+*/
     bool doLayerTreatment = false;
     bool doBoundarySmoothing = false;
     pointField finalPoints(mesh.points());

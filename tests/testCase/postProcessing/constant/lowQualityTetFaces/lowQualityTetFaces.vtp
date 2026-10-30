@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<!-- lowQualityTetFaces -->
+<VTKFile type='PolyData' version='0.1' byte_order='LittleEndian' header_type='UInt64'>
+  <PolyData>
+    <Piece NumberOfPoints='14' NumberOfPolys='2'>
+      <Points>
+        <DataArray type='Float32' Name='Points' NumberOfComponents='3' format='binary'>
+qAAAAAAAAAChLfc/nh5NwntOxj+aFrs9nVEhwl0zz8AyVQJAb3DFwWsrbMDEsclB+7rFwSvBvr8Q6dpBtnMhwq1uz8Ar9sZBjjVMwiTW5j+X/1pBSjtYwrA4eMChLfc/nh5NQntOxj+X/1pBSjtYQrA4eMAr9sZBjjVMQiTW5j8Q6dpBtnMhQq1uz8DEsclB+7rFQSvBvr8yVQJAb3DFQWsrbMCaFrs9nVEhQl0zz8A=
+        </DataArray>
+      </Points>
+      <Polys>
+        <DataArray type='Int32' Name='connectivity' format='binary'>
+4AAAAAAAAAAAAAAAAQAAAAIAAAADAAAABAAAAAUAAAAGAAAABwAAAAgAAAAJAAAACgAAAAsAAAAMAAAADQAAAA==
+        </DataArray>
+        <DataArray type='Int32' Name='offsets' format='binary'>
+CAAAAAAAAAAHAAAADgAAAA==
+        </DataArray>
+      </Polys>
+    </Piece>
+  </PolyData>
+</VTKFile>

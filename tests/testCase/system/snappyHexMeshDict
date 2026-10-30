@@ -15,7 +15,7 @@ FoamFile
 }
 
 castellatedMesh true;
-type            castellatedBufferLayer;
+type            castellated; //BufferLayer;
 snap            true;
 
 addLayers       false;
@@ -77,7 +77,7 @@ snapControls
         nPointSmootherIter      0;   
     }
     */
-        dynamicFvMesh dynamicMotionSolverFvMesh;
+    dynamicFvMesh dynamicMotionSolverFvMesh;
     solver newSmoothSolver;
     // motionSolverLibs ("libsmoothMeshMotionSolver.so");
     newSmoothSolverCoeffs

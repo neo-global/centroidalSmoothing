@@ -17,14 +17,14 @@ runApplication surfaceConvert ./constant/triSurface/completeModel.stl ./constant
 runApplication surfaceFeatureConvert ./constant/triSurface/completeModel.eMesh ./constant/geometry/initEdges.obj
 runApplication ideasUnvToFoam ./constant/triSurface/grid.unv
 
-# runApplication  snappyHexMesh -overwrite
-# runApplication  checkMesh -allTopology -allGeometry -writeSets vtk
-# exit
-runApplication decomposePar
-runParallel  snappyHexMesh -overwrite
-runParallel  checkMesh -allTopology -allGeometry -writeSets vtk
-
+runApplication  snappyHexMeshMod -overwrite
+runApplication  checkMesh -allTopology -allGeometry -writeSets vtk
 exit
+#runApplication decomposePar
+#runParallel  snappyHexMeshMod -overwrite
+#runParallel  checkMesh -allTopology -allGeometry -writeSets vtk
+
+#exit
 #without buffer layer
 # minEdgeLength          1.51866e-05
 # maxStepLength          4.55598e-06
@@ -42,7 +42,7 @@ cleanTimeDirectories
 #- Run with leak-detection (writes postProcessing/leakPath) and closure
 foamDictionary system/snappyHexMeshDict \
     -entry castellatedMeshControls/useLeakClosure -set true
-runParallel -s leak_and_closure snappyHexMesh
+runParallel -s leak_and_closure snappyHexMeshMod
 runParallel -s leak_and_closure checkMesh
 
 #------------------------------------------------------------------------------
