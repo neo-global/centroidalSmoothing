@@ -1,1 +1,2 @@
 This github consist of a implementation of the smoother from https://github.com/tkeskita/smoothMesh as a displacement solver inside snappyHexMesh. the idea behind this implementation is that by using it inside snappy the quality check will be done after the smoothing which will enable to go further on the snappy procedure (as when the quality is not meant snappy will go back to a previous step).
+Currently it has its own limitations in comparison to the original implementation.
